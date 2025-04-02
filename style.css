@@ -80,7 +80,9 @@
         .about h2 {
             text-align: center;
             font-size: 2rem;
-            color: #ffffff;
+            background: linear-gradient(to right, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            color: transparent;
             margin-bottom: 1rem;
         }
         
