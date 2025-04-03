@@ -67,6 +67,10 @@
             color: var(--accent-purple);
         }
 
+        .header-avatar {
+            font-size: 2.3rem;
+        }
+
         /*Section à Propos*/
 
         .about {
@@ -116,10 +120,14 @@
         }
         
         .about-image img {
-            max-width: 70%;
+            max-width: 60%;
             height: 40vh;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        strong {
+            color: var(--accent-purple);
         }
 
         /* Section Compétences */
@@ -228,5 +236,31 @@
 
             .about-image img {
                 height: 30vh;
+            }
+
+            .about {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+        
+            .about h2 {
+                font-size: 1.8rem;
+            }
+        
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        
+            .about-text {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+        
+            .about-image img {
+                max-width: 80%;
+                height: auto;
+                margin-top: 1rem;
             }
         }
