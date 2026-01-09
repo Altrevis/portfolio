@@ -3,78 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Léo - Portfolio Développeur Web</title>
+    <title>Léo Benazeth - Portfolio Développeur Full Stack</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 <body>
-    <div class="container">
-        <!-- En-tête -->
-        <header class="header">
-            <div class="header-content">
-                <h1>Benazeth Léo</h1>
-                <p>Développeur Web Full Stack</p>
-                <div class="social-links">
-                    <a href="https://github.com/Altrevis?tab=repositories" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/leobenazeth/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:leo.benazeth@gmail.com?subject=Proposition%20de%20stage%20et%20alternance">
-                    <i class="fas fa-envelope"></i></a>
-                </div>
+    <!-- Navigation fixe -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">LB</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#journey" class="nav-link">Parcours</a></li>
+                <li><a href="#projects" class="nav-link">Projets</a></li>
+                <li><a href="#skills" class="nav-link">Compétences</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <div class="header-avatar">
-                <div class="avatar-placeholder">
-                    <i class="fas fa-code"></i>
-                </div>
-            </div>
-        </header>
+        </div>
+    </nav>
 
-        <!-- Description -->
-        <section class="about">
-            <h2>À Propos de Moi</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Je suis un <strong>jeune développeur web full stack</strong> passionné par la création d'<strong>interfaces utilisateur modernes</strong> et fonctionnelles. J'ai une expérience dans la <strong>gestion de bases de données</strong> et la connexion à des <strong>API tierces</strong>. J'ai également une passion pour l'<strong>open source</strong> et j'aime contribuer à des projets sur <a href="https://github.com/Altrevis?tab=repositories" target="_blank">GitHub</a>. J'ai aussi eu la chance de faire une <strong> alternance de 2 ans</strong> en <strong>informatique</strong> à la <strong>Police Judiciaire de montpellier</strong>.</p>
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hello">Bonjour, je suis</span>
+                    <h1 class="hero-title">Léo Benazeth</h1>
+                    <p class="hero-subtitle">
+                        <span class="typing-text"></span>
+                        <span class="cursor">|</span>
+                    </p>
+                    <p class="hero-description">
+                        Développeur Full Stack passionné, spécialisé dans la création d'applications web modernes et performantes.
+                        2 ans d'alternance à la Police Judiciaire de Montpellier.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i> Voir mes projets
+                        </a>
+                        <a href="mailto:leo.benazeth@gmail.com" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Me contacter
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/Altrevis" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/leobenazeth/" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:leo.benazeth@gmail.com" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="img/leo.jpg" alt="Photo de Léo Benazeth" />
+                <div class="hero-image">
+                    <div class="profile-card">
+                        <div class="profile-image">
+                            <img src="img/leo.jpg" alt="Léo Benazeth" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="profile-fallback" style="display: none;">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                        </div>
+                        <div class="github-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-code-branch"></i>
+                                <span id="repo-count">29</span>
+                                <small>Repos</small>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span id="stars-count">--</span>
+                                <small>Stars</small>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <span id="followers-count">--</span>
+                                <small>Followers</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Compétences -->
-        <section class="skills">
-            <h2>Mes Compétences</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Backend</h3>
-                    <p>Gestion connexion API et liaison Base de données</p>
+        <!-- À Propos -->
+        <section id="about" class="about">
+            <h2 class="section-title">
+                <span>À Propos de Moi</span>
+            </h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Formation</h3>
+                    <p>Étudiant en développement web, je me forme continuellement aux technologies les plus récentes et aux meilleures pratiques du développement moderne.</p>
                 </div>
-                <div class="skill-card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Frontend</h3>
-                    <p>Interfaces utilisateur classique et moderne</p>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Expérience</h3>
+                    <p>2 ans d'alternance à la Police Judiciaire de Montpellier, où j'ai développé des solutions informatiques pour améliorer les processus internes.</p>
                 </div>
-                <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Bases de Données</h3>
-                    <p>Gestion des données et chiffrage sur phpmyadmin</p>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Passion</h3>
+                    <p>Passionné par l'open source, je contribue activement à des projets sur GitHub et j'aime créer des applications qui ont un impact positif.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parcours Timeline -->
+        <section id="journey" class="journey">
+            <h2 class="section-title">
+                <span>Mon Parcours</span>
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - Présent</div>
+                        <h3>Développement Full Stack</h3>
+                        <p>Création d'applications e-commerce, APIs RESTful, et projets personnels en Python, JavaScript, Go et Java.</p>
+                        <div class="timeline-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - 2024</div>
+                        <h3>Alternance - Police Judiciaire</h3>
+                        <p>2 ans d'alternance en informatique où j'ai développé des outils internes, géré des bases de données et travaillé sur la sécurité informatique.</p>
+                        <div class="timeline-tags">
+                            <span>PHP</span>
+                            <span>MySQL</span>
+                            <span>Sécurité</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>Projets Académiques</h3>
+                        <p>Développement de jeux web, applications de gestion, forums et sites e-commerce dans le cadre de ma formation.</p>
+                        <div class="timeline-tags">
+                            <span>JavaScript</span>
+                            <span>Go</span>
+                            <span>Java</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies -->
+        <section id="skills" class="technologies">
+            <h2 class="section-title">
+                <span>Technologies & Compétences</span>
+            </h2>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-php"></i>
+                            <span>PHP</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-java"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-code"></i>
+                            <span>Go</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3><i class="fas fa-database"></i> Base de Données</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3><i class="fas fa-tools"></i> Outils</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-code-branch"></i>
+                            <span>API REST</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Projets -->
-        <section class="projects">
-            <h2>Mes Projets Github</h2>
-            <div id="projects-grid" class="projects-grid">
-                <!-- Les projets seront ajoutés dynamiquement via JavaScript -->
+        <section id="projects" class="projects">
+            <h2 class="section-title">
+                <span>Mes Projets GitHub</span>
+            </h2>
+
+            <!-- Projets Featured -->
+            <div class="featured-projects">
+                <h3 class="featured-title">Projets Principaux</h3>
+                <div id="featured-projects-grid" class="featured-grid">
+                    <!-- Chargement dynamique -->
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Chargement des projets...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tous les projets -->
+            <div class="all-projects">
+                <h3 class="section-subtitle">Tous les Projets</h3>
+                
+                <!-- Filtres -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> Tous
+                </button>
+                <button class="filter-btn" data-filter="JavaScript">
+                    <i class="fab fa-js"></i> JavaScript
+                </button>
+                <button class="filter-btn" data-filter="Python">
+                    <i class="fab fa-python"></i> Python
+                </button>
+                <button class="filter-btn" data-filter="Go">
+                    <i class="fas fa-code"></i> Go
+                </button>
+                <button class="filter-btn" data-filter="PHP">
+                    <i class="fab fa-php"></i> PHP
+                </button>
+                <button class="filter-btn" data-filter="Java">
+                    <i class="fab fa-java"></i> Java
+                </button>
+            </div>
+
+                <div id="projects-grid" class="projects-grid">
+                    <!-- Chargement dynamique -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="contact">
+            <h2 class="section-title">
+                <span>Travaillons Ensemble</span>
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>Je suis actuellement à la recherche d'opportunités de stage et d'alternance. N'hésitez pas à me contacter !</p>
+                    <div class="contact-methods">
+                        <a href="mailto:leo.benazeth@gmail.com" class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>leo.benazeth@gmail.com</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/leobenazeth/" target="_blank" class="contact-method">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <p>Léo Benazeth</p>
+                            </div>
+                        </a>
+                        <a href="https://github.com/Altrevis" target="_blank" class="contact-method">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <h4>GitHub</h4>
+                                <p>@Altrevis</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>© 2025 léo benazeth.</p>
+            <div class="footer-content">
+                <p>© 2025 Léo Benazeth. Fait avec <i class="fas fa-heart"></i> et beaucoup de <i class="fas fa-coffee"></i></p>
+                <div class="footer-links">
+                    <a href="#home">Retour en haut <i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
         </footer>
     </div>
 
