@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Léo Benazeth - Portfolio Développeur Full Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="img/favicon.png">
 </head>
 <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
+
     <!-- Navigation fixe -->
     <nav class="navbar">
         <div class="nav-container">
@@ -44,6 +49,20 @@
                         Développeur Full Stack passionné, spécialisé dans la création d'applications web modernes et performantes.
                         2 ans d'alternance à la Police Judiciaire de Montpellier.
                     </p>
+                    <div class="hero-highlights reveal">
+                        <div class="highlight-pill">
+                            <i class="fas fa-location-dot"></i>
+                            <span>Montpellier</span>
+                        </div>
+                        <div class="highlight-pill">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Expérience terrain</span>
+                        </div>
+                        <div class="highlight-pill">
+                            <i class="fas fa-bolt"></i>
+                            <span>Interfaces rapides</span>
+                        </div>
+                    </div>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">
                             <i class="fas fa-rocket"></i> Voir mes projets
@@ -288,6 +307,14 @@
             <div class="all-projects">
                 <h3 class="section-subtitle">Tous les Projets</h3>
 
+                <div class="projects-toolbar reveal">
+                    <label class="project-search" for="project-search">
+                        <i class="fas fa-magnifying-glass"></i>
+                        <input id="project-search" type="search" placeholder="Rechercher un projet, une techno..." autocomplete="off">
+                    </label>
+                    <div class="projects-count" id="projects-count">0 projet</div>
+                </div>
+
                 <!-- Filtres -->
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">
@@ -362,6 +389,10 @@
             </div>
         </footer>
     </div>
+
+    <button class="back-to-top" type="button" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="app.js"></script>
 </body>
