@@ -129,27 +129,44 @@ class GitHubAPI {
         this.username = username;
         this.baseUrl = 'https://api.github.com';
     }
-    
-    async fetchUser() {
+
+    async fetchJSON(url, resourceLabel) {
         try {
-            const response = await fetch(`${this.baseUrl}/users/${this.username}`);
-            return await response.json();
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (!response.ok) {
+                const apiMessage = data && data.message ? data.message : `HTTP ${response.status}`;
+                console.warn(`GitHub API (${resourceLabel}) indisponible: ${apiMessage}`);
+                return null;
+            }
+
+            return data;
         } catch (error) {
-            console.error('Erreur lors de la récupération du profil:', error);
+            console.error(`Erreur réseau GitHub (${resourceLabel}):`, error);
             return null;
         }
     }
     
+    async fetchUser() {
+        const user = await this.fetchJSON(`${this.baseUrl}/users/${this.username}`, 'profil');
+        if (!user || Array.isArray(user)) {
+            return null;
+        }
+        return user;
+    }
+    
     async fetchRepositories() {
-        try {
-            const response = await fetch(
-                `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=100`
-            );
-            return await response.json();
-        } catch (error) {
-            console.error('Erreur lors de la récupération des repos:', error);
+        const repos = await this.fetchJSON(
+            `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=100`,
+            'repositories'
+        );
+
+        if (!Array.isArray(repos)) {
             return [];
         }
+
+        return repos;
     }
     
     async getLanguageStats(repos) {
@@ -175,16 +192,21 @@ async function updateGitHubStats() {
             api.fetchRepositories()
         ]);
         
+        const safeRepos = Array.isArray(repos) ? repos : [];
+
         if (user) {
             document.getElementById('followers-count').textContent = user.followers || 0;
-            
-            const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
+
+            const totalStars = safeRepos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
             document.getElementById('stars-count').textContent = totalStars;
+        } else {
+            document.getElementById('followers-count').textContent = '--';
+            document.getElementById('stars-count').textContent = '--';
         }
-        
-        document.getElementById('repo-count').textContent = repos.length;
-        
-        return repos;
+
+        document.getElementById('repo-count').textContent = safeRepos.length;
+
+        return safeRepos;
     } catch (error) {
         console.error('Erreur lors de la mise à jour des stats:', error);
         return [];
@@ -248,11 +270,6 @@ function createProjectCard(repo, isFeatured = false) {
                 <a href="${repo.html_url}" target="_blank" title="Voir sur GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                ${repo.homepage ? `
-                    <a href="${repo.homepage}" target="_blank" title="Voir le site">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                ` : ''}
             </div>
         </div>
         <h3>${repo.name.replace(/-/g, ' ')}</h3>
@@ -295,13 +312,17 @@ function formatDate(dateString) {
     return `${Math.floor(diffDays / 365)}an`;
 }
 
-async function displayProjects() {
+async function displayProjects(repositories = null) {
     const api = new GitHubAPI(CONFIG.username);
-    const repos = await api.fetchRepositories();
+    const repos = Array.isArray(repositories) ? repositories : await api.fetchRepositories();
+    const featuredGrid = document.getElementById('featured-projects-grid');
+    const allProjectsGrid = document.getElementById('projects-grid');
     
     if (!repos || repos.length === 0) {
-        document.getElementById('featured-projects-grid').innerHTML = 
+        featuredGrid.innerHTML =
             '<p class="loading">Aucun projet trouvé</p>';
+        allProjectsGrid.innerHTML =
+            '<p class="loading">API GitHub indisponible (limite atteinte ou accès refusé). Réessayez plus tard.</p>';
         return;
     }
     
@@ -310,7 +331,6 @@ async function displayProjects() {
         CONFIG.featuredProjects.includes(repo.name)
     );
     
-    const featuredGrid = document.getElementById('featured-projects-grid');
     featuredGrid.innerHTML = '';
     
     featuredRepos.forEach(repo => {
@@ -318,7 +338,6 @@ async function displayProjects() {
     });
     
     // Afficher tous les autres projets
-    const allProjectsGrid = document.getElementById('projects-grid');
     allProjectsGrid.innerHTML = '';
     
     repos.forEach(repo => {
@@ -404,10 +423,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     typeWriter();
     
     // Charger les stats GitHub
-    await updateGitHubStats();
+    const repos = await updateGitHubStats();
     
     // Charger et afficher les projets
-    await displayProjects();
+    await displayProjects(repos);
     
     // Initialiser les animations
     animateOnScroll();

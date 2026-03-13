@@ -62,6 +62,11 @@ body::before {
     padding: 0 2rem;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 
 /* ===== NAVIGATION ===== */
 .navbar {
@@ -994,55 +999,82 @@ section {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
+    .container {
+        width: 100%;
+        padding: 0 1.5rem;
+    }
+
+    .nav-container {
+        padding: 0.9rem 1.5rem;
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
+
     .hero-image {
         order: -1;
     }
-    
+
     .profile-card {
         max-width: 400px;
         margin: 0 auto;
     }
-    
+
     .profile-image {
         width: 250px;
         height: 250px;
     }
-    
+
     .timeline::before {
         left: 30px;
     }
-    
-    .timeline-item {
+
+    .timeline-item,
+    .timeline-item.left,
+    .timeline-item.right {
         width: 100%;
+        left: 0;
         padding-left: 80px;
         padding-right: 2rem;
     }
-    
-    .timeline-item.left,
-    .timeline-item.right {
-        left: 0;
-        padding-left: 80px;
-    }
-    
+
     .timeline-item.left .timeline-content::after,
     .timeline-item.right .timeline-content::after {
         left: -20px;
         border-right-color: var(--bg-card);
         border-left-color: transparent;
     }
-    
+
     .timeline-item.left .timeline-content::before,
     .timeline-item.right .timeline-content::before {
         left: -3.5rem;
+        right: auto;
+    }
+
+    .featured-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
 
 @media (max-width: 768px) {
+    section {
+        padding: 4rem 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .nav-container {
+        padding: 0.9rem 1rem;
+    }
+
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -1055,85 +1087,242 @@ section {
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.3);
         padding: 2rem 0;
     }
-    
+
+    .nav-link {
+        display: inline-block;
+        padding: 0.8rem 0;
+    }
+
     .nav-menu.active {
         left: 0;
     }
-    
+
     .hamburger {
         display: flex;
     }
-    
+
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(8px, 8px);
     }
-    
+
     .hamburger.active span:nth-child(2) {
         opacity: 0;
     }
-    
+
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(8px, -8px);
     }
-    
+
     .hero-title {
         font-size: 3rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.5rem;
     }
-    
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .section-title {
+        margin-bottom: 2.5rem;
+    }
+
     .section-title span {
         font-size: 2rem;
     }
-    
-    .featured-grid {
+
+    .journey,
+    .contact {
+        margin: 3rem 0;
+        border-radius: 20px;
+    }
+
+    .timeline {
+        padding: 1rem 0;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item.left,
+    .timeline-item.right {
+        width: 100%;
+        left: 0;
+        padding: 1rem 0 1rem 3rem;
+    }
+
+    .timeline-item.left .timeline-content::after,
+    .timeline-item.right .timeline-content::after {
+        left: -20px;
+        right: auto;
+        border-right-color: var(--bg-card);
+        border-left-color: transparent;
+    }
+
+    .timeline-item.left .timeline-content::before,
+    .timeline-item.right .timeline-content::before {
+        left: -2.6rem;
+        right: auto;
+    }
+
+    .timeline-content {
+        padding: 1.4rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .about-content,
+    .tech-grid,
+    .featured-grid,
+    .projects-grid,
+    .contact-methods {
         grid-template-columns: 1fr;
+        gap: 1.2rem;
     }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
+
+    .project-card,
+    .about-card,
+    .tech-category,
+    .contact-method {
+        padding: 1.4rem;
     }
-    
-    .tech-grid {
-        grid-template-columns: 1fr;
+
+    .project-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        gap: 0.7rem;
+        padding-bottom: 0.3rem;
+        -webkit-overflow-scrolling: touch;
     }
+
+    .project-filters::-webkit-scrollbar {
+        height: 6px;
     }
-    
+
+    .project-filters::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 8px;
+    }
+
+    .filter-btn {
+        white-space: nowrap;
+        padding: 0.65rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .contact-method {
+        gap: 1rem;
+    }
+
+    .contact-method i {
+        font-size: 2rem;
+    }
+
+    .contact-method h4,
+    .contact-method p {
+        word-break: break-word;
+    }
+
     .profile-image {
         width: 200px;
         height: 200px;
     }
-
+}
 
 @media (max-width: 480px) {
     .container {
         padding: 0 1rem;
     }
-    
+
+    .nav-logo {
+        font-size: 1.5rem;
+    }
+
     .hero {
         padding: 6rem 0 2rem;
+        min-height: auto;
     }
-    
+
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.15;
     }
-    
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        min-height: 2rem;
+    }
+
+    .section-title span {
+        font-size: 1.65rem;
+    }
+
     .hero-buttons {
         flex-direction: column;
+        gap: 0.8rem;
     }
-    
+
     .btn {
         width: 100%;
         justify-content: center;
+        padding: 0.9rem 1rem;
+        font-size: 0.95rem;
     }
-    
+
+    .social-links a {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+
     .profile-card {
         padding: 1.5rem;
     }
-    
+
+    .profile-image {
+        width: 170px;
+        height: 170px;
+    }
+
     .github-stats {
         grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+        padding: 0.8rem;
+    }
+
+    .featured-title,
+    .section-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .project-stats {
+        flex-wrap: wrap;
+        gap: 0.7rem 1rem;
+    }
+
+    .footer {
+        padding: 2rem 0;
     }
 }
